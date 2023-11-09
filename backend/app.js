@@ -43,6 +43,24 @@ app.get('/obtenerDatos', async (req, res) => {
     }
 });
 
+app.delete('/borrarDato/:id', async (req, res) => {
+    try {
+        const conexion = await mysql.createConnection(dbConfig);
+        const { id } = req.params;
+        await conexion.execute('DELETE FROM microservicio WHERE id = ?', [id]);
+        await conexion.end();
+        res.json({ mensaje: 'Dato borrado correctamente' });
+    } catch (error) {
+        console.error('Error al borrar el dato:', error);
+        res.status(500).json({ mensaje: 'Error al borrar el dato' });
+    }
+});
+
+
+
+
+
+
 const PORT = 3000;
 const IP = '0.0.0.0';
 
