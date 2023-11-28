@@ -17,9 +17,9 @@ const dbConfig = {
 app.post('/guardarDato', async (req, res) => {
     try {
         const conexion = await mysql.createConnection(dbConfig);
-        const  {dato}  = req.body; 
+        const { name, last_name } = req.body; 
 
-        await conexion.execute('INSERT INTO microservicio (name) VALUES (?)', [dato]);
+        await conexion.execute('INSERT INTO microservicio (name, last_name) VALUES (?, ?)', [name, last_name]);
 
         await conexion.end(); 
 

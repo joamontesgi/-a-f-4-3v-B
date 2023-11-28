@@ -6,7 +6,7 @@ const App = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get('http://192.168.0.12:3000/obtenerDatos')
+    axios.get('http://192.168.236.154:3000/obtenerDatos')
       .then((response) => {
         setData(response.data);
       })
